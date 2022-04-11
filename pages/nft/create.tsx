@@ -11,6 +11,7 @@ const ATTRIBUTES = ["health", "attack", "speed"]
 const NftCreate: NextPage = () => {
   const [nftURI, setNftURI] = useState("");
   const [hasURI, setHasURI] = useState(false);
+
   return (
     <BaseLayout>
       <div>
