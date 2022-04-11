@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 
 import type { NextPage } from 'next'
-import { BaseLayout } from '../components'
+import { BaseLayout } from '@ui'
 
 import nfts from "../content/meta.json";
-import { NftMeta } from '../types/nft';
+import { NftMeta } from '@_types/nft';
 
 const tabs = [
   { name: 'Your Collection', href: '#', current: true },
