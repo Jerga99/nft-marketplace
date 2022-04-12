@@ -33,7 +33,6 @@ export const loadContract = async (
   name: string,  // NftMarket
   provider: providers.Web3Provider
 ): Promise<Contract> => {
-
   if (!NETWORK_ID) {
     return Promise.reject("Network ID is not defined!");
   }
