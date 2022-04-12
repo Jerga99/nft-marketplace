@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
     "@metamask/providers": "^8.1.1",
+    "@openzeppelin/contracts": "^4.5.0",
     "@tailwindcss/forms": "^0.5.0",
     "ethers": "^5.6.2",
     "next": "12.1.4",
