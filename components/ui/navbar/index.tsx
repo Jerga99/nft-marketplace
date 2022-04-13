@@ -102,7 +102,6 @@ export default function Navbar() {
                 </Menu> :
                 <button
                   onClick={() => {
-                    // in the next lecture!
                     account.connect();
                   }}
                   type="button"

@@ -2,7 +2,11 @@
 import { CryptoHookFactory } from "@_types/hooks";
 import useSWR from "swr";
 
-type AccountHookFactory = CryptoHookFactory<string>
+type UseAccountResponse = {
+  connect: () => void
+}
+
+type AccountHookFactory = CryptoHookFactory<string, UseAccountResponse>
 
 export type UseAccountHook = ReturnType<AccountHookFactory>
 
