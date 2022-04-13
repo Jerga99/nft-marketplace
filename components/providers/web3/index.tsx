@@ -34,6 +34,11 @@ export function useWeb3() {
   return useContext(Web3Context);
 }
 
+export function useHooks() {
+  const { hooks } = useWeb3();
+  return hooks;
+}
+
 export default Web3Provider;
 
 
