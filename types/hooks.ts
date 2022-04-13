@@ -6,7 +6,7 @@ import { SWRResponse } from "swr";
 export type Web3Dependencies = {
   provider: providers.Web3Provider;
   contract: Contract;
-  ethereum: MetaMaskInpageProvider
+  ethereum: MetaMaskInpageProvider;
 }
 
 export type CryptoHookFactory<D = any, P = any> = {
