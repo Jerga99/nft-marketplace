@@ -19,8 +19,6 @@ export default function Navbar() {
   const { account } = useAccount();
   const { network } = useNetwork();
 
-  console.log(network.data);
-
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -66,6 +64,14 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div className="text-gray-300 self-center mr-2">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-purple-100 text-purple-800">
+                    <svg className="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
+                      <circle cx={4} cy={4} r={3} />
+                    </svg>
+                    {network.data}
+                  </span>
+                </div>
                 <Walletbar
                   isInstalled={account.isInstalled}
                   isLoading={account.isLoading}
