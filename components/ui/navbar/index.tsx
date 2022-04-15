@@ -69,7 +69,9 @@ export default function Navbar() {
                     <svg className="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
                       <circle cx={4} cy={4} r={3} />
                     </svg>
-                    {network.data}
+                    {network.data} ---
+                    {`Is supported: ${network.isSupported}`} ---
+                    Target: {network.targetNetwork}
                   </span>
                 </div>
                 <Walletbar
