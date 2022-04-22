@@ -3,12 +3,13 @@
 
 import type { NextPage } from 'next';
 import { BaseLayout, NftList } from '@ui';
-import nfts from "../content/meta.json";
 import { NftMeta } from '@_types/nft';
-import { useWeb3 } from '@providers/web3';
+import { useListedNfts } from '@hooks/web3';
 
 const Home: NextPage = () => {
-  const { provider, contract } = useWeb3();
+  const { nfts } = useListedNfts();
+
+  console.log(nfts.data);
 
   return (
     <BaseLayout>
@@ -24,7 +25,7 @@ const Home: NextPage = () => {
             </p>
           </div>
           <NftList
-            nfts={nfts as NftMeta[]}
+            nfts={nfts?.data}
           />
         </div>
       </div>
