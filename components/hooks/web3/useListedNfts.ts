@@ -30,8 +30,7 @@ export const hookFactory: ListedNftsHookFactory = ({contract}) => () => {
           meta
         })
       }
-
-      debugger
+      
       return nfts;
     }
   )
