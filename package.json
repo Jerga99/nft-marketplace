@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "genContractType": "abi-types-generator './public/contracts/NftMarket.json' --output='./types' --name=nftMarketContract --provider=ethers_v5"
   },
   "dependencies": {
     "@headlessui/react": "^1.5.0",
@@ -27,6 +28,7 @@
     "autoprefixer": "^10.4.4",
     "eslint": "8.12.0",
     "eslint-config-next": "12.1.4",
+    "ethereum-abi-types-generator": "^1.3.2",
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.23",
     "typescript": "4.6.3"
