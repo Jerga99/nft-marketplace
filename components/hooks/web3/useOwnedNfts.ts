@@ -2,6 +2,7 @@
 import { CryptoHookFactory } from "@_types/hooks";
 import { Nft } from "@_types/nft";
 import { ethers } from "ethers";
+import { useCallback } from "react";
 import useSWR from "swr";
 
 type UseOwnedNftsResponse = {
@@ -37,9 +38,10 @@ export const hookFactory: OwnedNftsHookFactory = ({contract}) => () => {
     }
   )
 
-  const listNft = async (tokenId: number, price: number) => {
+  const _contract = contract;
+  const listNft = useCallback(async (tokenId: number, price: number) => {
     try {
-      const result = await contract?.placeNftOnSale(
+      const result = await _contract!.placeNftOnSale(
         tokenId,  
         ethers.utils.parseEther(price.toString()),
         {
@@ -52,7 +54,7 @@ export const hookFactory: OwnedNftsHookFactory = ({contract}) => () => {
     } catch (e: any) {
       console.error(e.message);
     }
-  }
+  }, [_contract])
 
   return {
     ...swr,
