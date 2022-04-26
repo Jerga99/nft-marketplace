@@ -16,6 +16,8 @@ const abi = contract.abi;
 const targetNetwork = process.env.NEXT_PUBLIC_NETWORK_ID as keyof NETWORK;
 
 export const contractAddress = contract["networks"][targetNetwork]["address"];
+export const pinataApiKey = process.env.PINATA_API_KEY as string;
+export const pinataSecretApiKey = process.env.PINATA_SECRET_API_KEY as string;
 
 export function withSession(handler: any) {
   return withIronSession(handler, {
@@ -37,8 +39,6 @@ export const addressCheckMiddleware = async (req: NextApiRequest & { session: Se
       provider
     ) as unknown as NftMarketContract;
 
-    console.log(message);
-
     let nonce: string | Buffer = 
       "\x19Ethereum Signed Message:\n" +
       JSON.stringify(message).length + 
@@ -50,7 +50,6 @@ export const addressCheckMiddleware = async (req: NextApiRequest & { session: Se
     const addrBuffer = util.pubToAddress(pubKey);
     const address = util.bufferToHex(addrBuffer);
 
-    console.log(address);
     if (address === req.body.address) {
       resolve("Correct Address");
     } else {
@@ -58,3 +57,4 @@ export const addressCheckMiddleware = async (req: NextApiRequest & { session: Se
     }
   })
 }
+
