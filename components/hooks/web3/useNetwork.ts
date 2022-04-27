@@ -19,6 +19,7 @@ type UseNetworkResponse = {
   isLoading: boolean;
   isSupported: boolean;
   targetNetwork: string;
+  isConnectedToNetwork: boolean;
 }
 
 type NetworkHookFactory = CryptoHookFactory<string, UseNetworkResponse>
@@ -41,12 +42,15 @@ export const hookFactory: NetworkHookFactory = ({provider, isLoading}) => () => 
     }
   )
 
+  const isSupported = data === targetNetwork;
+
   return {
     ...swr,
     data,
     isValidating,
     targetNetwork,
-    isSupported: data === targetNetwork,
+    isSupported,
+    isConnectedToNetwork: !isLoading && isSupported,
     isLoading: isLoading as boolean,
   };
 }
