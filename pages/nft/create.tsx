@@ -9,6 +9,7 @@ import { NftMeta, PinataRes } from '@_types/nft';
 import axios from 'axios';
 import { useWeb3 } from '@providers/web3';
 import { ethers } from 'ethers';
+import { toast } from "react-toastify";
 
 const ALLOWED_FIELDS = ["name", "description", "image", "attributes"];
 
@@ -53,13 +54,21 @@ const NftCreate: NextPage = () => {
     
     try {
       const {signedData, account} = await getSignedData();
-      const res = await axios.post("/api/verify-image", {
+      const promise = axios.post("/api/verify-image", {
         address: account,
         signature: signedData,
         bytes,
         contentType: file.type,
         fileName: file.name.replace(/\.[^/.]+$/, "")
       });
+
+      const res = await toast.promise(
+        promise, {
+          pending: "Uploading image",
+          success: "Image uploaded",
+          error: "Image upload error"
+        }
+      )
 
       const data = res.data as PinataRes;
 
@@ -92,11 +101,19 @@ const NftCreate: NextPage = () => {
     try {
       const {signedData, account} = await getSignedData();
 
-      const res = await axios.post("/api/verify", {
+      const promise = axios.post("/api/verify", {
         address: account,
         signature: signedData,
         nft: nftMeta
       })
+
+      const res = await toast.promise(
+        promise, {
+          pending: "Uploading metadata",
+          success: "Metadata uploaded",
+          error: "Metadata upload error"
+        }
+      )
 
       const data = res.data as PinataRes;
       setNftURI(`${process.env.NEXT_PUBLIC_PINATA_DOMAIN}/ipfs/${data.IpfsHash}`);
@@ -122,9 +139,14 @@ const NftCreate: NextPage = () => {
           value: ethers.utils.parseEther(0.025.toString())
         }
       );
-
-      await tx?.wait();
-      alert("Nft was created!");
+      
+      await toast.promise(
+        tx!.wait(), {
+          pending: "Uploading metadata",
+          success: "Metadata uploaded",
+          error: "Metadata upload error"
+        }
+      );
     } catch(e: any) {
       console.error(e.message);
     }
